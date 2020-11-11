@@ -1,0 +1,228 @@
+au préalable dans la console : -->
+//sudo systemctl start mongod
+// sudo systemctl status mongod
+// choisir/créer sa database et la connecter a robo 3T
+
+// créer et alimenter la database "students" -->
+// use exo_students_database
+// db.user.insert({id: 1, name: "Veronique", Ville: "Paris"})
+// WriteResult({ "nInserted" : 1 })
+// > show dbs > exo_students_database  0.000GB
+
+
+
+// collection "students"
+
+ db.students.insertMany([
+ {   id: 1,
+    name: "Véronique",
+    ville: "Paris"
+
+},
+{   id: 2,
+    name: "Steeven",
+    ville: "Lyon"
+},
+{
+    id: 3,
+    name: "Marc",
+    ville: "Marseille"
+},
+{
+    id: 4,
+    name: "Nour",
+    ville: "Lyon"
+},
+{
+    id: 5,
+    name: "Romain",
+    ville: "Paris"
+},
+{
+    id: 6,
+    name: "Sophie",
+    ville: "Paris"
+}
+])
+
+
+
+// collection "languages"
+
+db.languages.insertMany ([
+    /* 1 */
+{
+    "_id" : ObjectId("5fab206e514b0f3b4cccbc22"),
+    "id" : 1.0,
+    "name" : "French"
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("5fab206e514b0f3b4cccbc23"),
+    "id" : 2.0,
+    "name" : "English"
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("5fab206e514b0f3b4cccbc24"),
+    "id" : 3.0,
+    "name" : "German"
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("5fab206e514b0f3b4cccbc25"),
+    "id" : 4.0,
+    "name" : "Spanish"
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("5fab206e514b0f3b4cccbc26"),
+    "id" : 5.0,
+    "name" : "Mandarin"
+}
+])
+
+
+
+// collection "favorites"
+
+db.favorites.insertMany ([
+    /* 1 */
+{
+    "_id" : ObjectId("5fab23c9514b0f3b4cccbc27"),
+    "id" : 1.0,
+    "Class" : "Maths",
+    "Sport" : "Cricket"
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("5fab23c9514b0f3b4cccbc28"),
+    "id" : 2.0,
+    "Class" : "Music",
+    "Sport" : "Hip-Hop"
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("5fab23c9514b0f3b4cccbc29"),
+    "id" : 3.0,
+    "Class" : "Arts",
+    "Sport" : "Boxing"
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("5fab23c9514b0f3b4cccbc2a"),
+    "id" : 4.0,
+    "Class" : "Literature",
+    "Sport" : "Tennis"
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("5fab23c9514b0f3b4cccbc2b"),
+    "id" : 5.0,
+    "Class" : "Computer Science",
+    "Sport" : "Tennis"
+}
+
+/* 6 */
+{
+    "_id" : ObjectId("5fab23c9514b0f3b4cccbc2c"),
+    "id" : 6.0,
+    "Class" : "Arts",
+    "Sport" : "Baseball"
+}
+])
+
+
+// collection "student_id"
+
+db.students_languages.insertMany([
+    { 
+        id : 1,
+        student_id : 1,
+        language_id : 1
+    },
+    { 
+        id : 2,
+        student_id : 1,
+        language_id : 2
+    },
+    { 
+        id : 3,
+        student_id : 2,
+        language_id : 1
+    },
+    { 
+        id : 4,
+        student_id : 2,
+        language_id : 3
+    },
+    
+    { 
+        id : 5,
+        student_id : 3,
+        language_id : 1
+    },
+    { 
+        id : 6,
+        student_id : 4,
+        language_id : 1
+    },
+    { 
+        id : 7,
+        student_id : 4,
+        language_id : 2
+    },
+    { 
+        id : 8,
+        student_id : 4,
+        language_id : 4
+    },
+    { 
+        id : 9,
+        student_id : 4,
+        language_id : 5
+    },
+    { 
+        id : 10,
+        student_id : 5,
+        language_id : 1
+    },
+    { 
+        id : 11,
+        student_id : 5,
+        language_id : 5
+    },
+    { 
+        id : 12,
+        student_id : 6,
+        language_id : 1
+    },
+    { 
+        id : 13,
+        student_id : 6,
+        language_id : 2
+    },
+    { 
+        id : 14,
+        student_id : 6,
+        language_id : 3
+    }
+    ])
+
+
+// REQUETES lvl1
+
+db.getCollection('students').find({id : 3})
+db.getCollection('students').find({id : 6})
+db.getCollection('students').find({"id" : 6},{"name" : 1, "ville" : 1})
+db.getCollection('students').find({"id" : 2},{"name" : 1})
+db.getCollection('students').find({"ville" : "Paris"})
+db.getCollection('students').find({"ville" : "Lyon"},{"name":1})
